@@ -1,0 +1,521 @@
+/* =============================================
+   KHÁM PHÁ VIỆT NAM - Main Stylesheet
+   ============================================= */
+
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --red:        #1a7a4a;
+  --red-dark:   #145c38;
+  --gold:       #52c97e;
+  --gold-light: #e6f9ee;
+  --white:      #ffffff;
+  --bg:         #f4faf7;
+  --text:       #1a2e23;
+  --muted:      #5a7a65;
+  --shadow:     0 4px 20px rgba(0,0,0,0.12);
+  --radius:     12px;
+  --transition: 0.3s ease;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* =============================================
+   HEADER / HERO BANNER
+   ============================================= */
+body > h1:first-of-type {
+  background: linear-gradient(135deg, #1a7a4a 0%, #145c38 60%, #0d3d26 100%);
+  color: var(--white);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  text-align: center;
+  padding: 60px 20px 50px;
+  letter-spacing: 2px;
+  text-shadow: 2px 3px 8px rgba(0,0,0,0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+body > h1:first-of-type::before {
+  content: '🇻🇳';
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.08;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+body > h1:first-of-type::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--gold);
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+/* =============================================
+   NAVIGATION BAR (top nav links)
+   ============================================= */
+body > a {
+  display: none; /* hide raw anchor siblings — we re-create via wrapper below */
+}
+
+/* Top nav — works because the anchors sit directly after h1 */
+body > a[href="index.html"],
+body > a[href="hanoi.html"],
+body > a[href="danang.html"],
+body > a[href="https://www.google.com"],
+body > a[href*="klook"],
+body > a[href*="vietnam.travel"] {
+  display: initial;
+}
+
+/* Re-style navigation anchors that appear right after h1 (before <p>) */
+body > h1 + a,
+body > h1 + a ~ a {
+  display: inline-block;
+  background: var(--red-dark);
+  color: var(--white);
+  padding: 10px 20px;
+  margin: 0 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+/* Nav wrapper strip */
+body::before {
+  content: '';
+}
+
+/* Isolate top nav row */
+body > h1 ~ a {
+  /* Nav links after h1 displayed as a flex bar */
+  display: inline-block;
+}
+
+/* Nav strip container trick using outline */
+body > a[href="index.html"] {
+  margin-top: 0;
+}
+
+/* Unified top-nav strip */
+body > h1 + a,
+body > h1 + a + a,
+body > h1 + a + a + a,
+body > h1 + a + a + a + a {
+  display: inline-block;
+  background: var(--red-dark);
+  color: var(--white) !important;
+  padding: 12px 22px;
+  margin: 0 3px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-bottom: 4px solid transparent;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  vertical-align: top;
+}
+
+body > h1 + a:hover,
+body > h1 + a + a:hover,
+body > h1 + a + a + a:hover,
+body > h1 + a + a + a + a:hover {
+  background: var(--red);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+/* Text node "|" separators are invisible — no styling needed */
+
+/* =============================================
+   MAIN CONTENT WRAPPER
+   ============================================= */
+body > p,
+body > h2,
+body > ul,
+body > ol,
+body > img {
+  display: block;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* =============================================
+   INTERNAL JUMP-LINKS PARAGRAPH
+   ============================================= */
+body > p:first-of-type {
+  background: var(--gold-light);
+  border-left: 5px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin-top: 32px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+body > p:first-of-type a {
+  color: var(--red-dark);
+  font-weight: 700;
+  text-decoration: none;
+  margin: 0 6px;
+  transition: color var(--transition);
+}
+
+body > p:first-of-type a:hover {
+  color: var(--red);
+  text-decoration: underline;
+}
+
+/* =============================================
+   SECTION HEADINGS
+   ============================================= */
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--red-dark);
+  margin-top: 48px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--gold);
+  position: relative;
+}
+
+h2::before {
+  content: '✦';
+  color: var(--gold);
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+/* =============================================
+   LISTS
+   ============================================= */
+ul, ol {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 50px;
+}
+
+ul li, ol li {
+  padding: 6px 0;
+  font-size: 1rem;
+  position: relative;
+}
+
+/* Custom bullet for unordered lists */
+ul {
+  list-style: none;
+  padding-left: 24px;
+}
+
+ul > li::before {
+  content: '→';
+  color: var(--red);
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+/* Nested list */
+ul ul {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding-left: 28px;
+  border-left: 3px solid var(--gold);
+}
+
+ul ul > li::before {
+  content: '•';
+  color: var(--gold);
+}
+
+ol {
+  list-style: decimal;
+  padding-left: 42px;
+}
+
+ol li::marker {
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* =============================================
+   LINKS INSIDE CONTENT
+   ============================================= */
+ul a, ol a {
+  color: var(--red-dark);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+ul a:hover, ol a:hover {
+  color: var(--red);
+  border-color: var(--gold);
+}
+
+/* =============================================
+   IMAGES SECTION
+   ============================================= */
+body > h2:last-of-type {
+  margin-bottom: 20px;
+}
+
+/* Image wrappers (anchors containing images) */
+body > a > img,
+body > img {
+  display: inline-block;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 10px 10px 10px 0;
+  transition: transform var(--transition), box-shadow var(--transition);
+  vertical-align: top;
+}
+
+body > a:has(img) {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  margin: 10px 10px 10px 0;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  vertical-align: top;
+}
+
+body > a:has(img):hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(26, 122, 74, 0.3);
+}
+
+body > a:has(img) img {
+  display: block;
+  margin: 0;
+  box-shadow: none;
+  transition: transform var(--transition);
+}
+
+body > a:has(img):hover img {
+  transform: scale(1.05);
+}
+
+/* Images container alignment */
+body > h2:last-of-type ~ a,
+body > h2:last-of-type ~ img {
+  /* center or left-align image row */
+}
+
+/* =============================================
+   PARAGRAPH LINKS (xem thêm, quay lại)
+   ============================================= */
+body > p a {
+  color: var(--red-dark);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--gold);
+  transition: color var(--transition), background var(--transition);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+body > p a:hover {
+  color: var(--white);
+  background: var(--red);
+  border-color: var(--red);
+}
+
+/* Back link styling */
+body > p:last-of-type a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--red-dark);
+  color: var(--white) !important;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  transition: background var(--transition), transform var(--transition);
+  margin-top: 10px;
+}
+
+body > p:last-of-type a:hover {
+  background: var(--red);
+  transform: translateX(-4px);
+}
+
+/* =============================================
+   REGION SECTION ANCHORS (id targets)
+   ============================================= */
+#mien-bac, #mien-trung, #mien-nam {
+  scroll-margin-top: 20px;
+  background: linear-gradient(135deg, #f0fff6, var(--gold-light));
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(82, 201, 126, 0.2);
+  font-weight: 700;
+  color: var(--red-dark);
+}
+
+#mien-bac > ul, #mien-trung > ul, #mien-nam > ul {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+/* =============================================
+   FOOTER STRIP
+   ============================================= */
+body::after {
+  content: '🗺️  Khám Phá Việt Nam · Tất cả quyền được bảo lưu';
+  display: block;
+  text-align: center;
+  padding: 28px 20px;
+  margin-top: 60px;
+  background: linear-gradient(135deg, #145c38, #0d3d26);
+  color: rgba(255,255,255,0.75);
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+}
+
+/* =============================================
+   DETAIL PAGES — hanoi.html / danang.html
+   ============================================= */
+
+/* Page-specific hero (h1 that is NOT "Khám phá Việt Nam") */
+body > h1 {
+  background: linear-gradient(135deg, #1a7a4a 0%, #145c38 60%, #0d3d26 100%);
+  color: var(--white);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  padding: 60px 20px 50px;
+  letter-spacing: 2px;
+  text-shadow: 2px 3px 8px rgba(0,0,0,0.35);
+  margin-bottom: 0;
+}
+
+body > h1::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--gold);
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+/* Detail page paragraph (description) */
+body > p:first-of-type {
+  font-size: 1.05rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  margin-top: 24px;
+}
+
+/* Detail page images — full gallery row */
+body > img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 10px 10px 10px 0;
+  object-fit: cover;
+  height: 200px;
+  transition: transform var(--transition), box-shadow var(--transition);
+  vertical-align: top;
+}
+
+body > img:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(26, 122, 74, 0.25);
+}
+
+/* =============================================
+   RESPONSIVE DESIGN
+   ============================================= */
+@media (max-width: 768px) {
+  body > h1:first-of-type,
+  body > h1 {
+    padding: 40px 16px 36px;
+  }
+
+  body > h1 + a,
+  body > h1 + a + a,
+  body > h1 + a + a + a,
+  body > h1 + a + a + a + a {
+    padding: 10px 14px;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+
+  body > p,
+  body > h2,
+  body > ul,
+  body > ol {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  body > a > img,
+  body > img {
+    width: calc(50% - 12px);
+    height: 150px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body > a > img,
+  body > img {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  body > h1 + a,
+  body > h1 + a + a,
+  body > h1 + a + a + a,
+  body > h1 + a + a + a + a {
+    padding: 8px 10px;
+    font-size: 0.7rem;
+  }
+}
